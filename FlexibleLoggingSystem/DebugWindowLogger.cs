@@ -1,8 +1,8 @@
 ﻿namespace FlexibleLoggingSystem
 {
-    public class DebugWindowLogger : Logger
+    public class DebugWindowLogger : ILogger
     {
-        public override void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
+        public void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
         {
             System.Diagnostics.Debug.WriteLine($"{level}: {errorMessage}");
 
@@ -11,5 +11,6 @@
                 System.Diagnostics.Debug.WriteLine(additionalInfo);
             }
         }
+
     }
 }

@@ -1,30 +1,32 @@
-﻿namespace FlexibleLoggingSystem
+﻿using System;
+
+namespace FlexibleLoggingSystem
 {
-    public static class ApplicationLog
+    public class ApplicationLog
     {
-        private static Logger configuredLogger;
+        private static ILogger configuredLogger;
 
-        private static Logger Logger 
-        { 
-            get
+            private static ILogger Logger
             {
-                if (ApplicationLog.configuredLogger is null)
+                get
                 {
-                    return new ConsoleLogger();
+                    if (ApplicationLog.configuredLogger is null)
+                    {
+                        return new ConsoleLogger();
+                    }
+
+                    return ApplicationLog.configuredLogger;
                 }
-
-                return ApplicationLog.configuredLogger;
             }
-        }
 
-        public static void ConfigureLogger(Logger logger)
+        internal static void ConfigureLogger(DebugWindowLogger debugWindowLogger)
         {
-            ApplicationLog.configuredLogger = logger;
+            throw new NotImplementedException();
         }
 
         public static void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
-        {
-            ApplicationLog.Logger.WriteLog(level, errorMessage, additionalInfo);
+            {
+                ApplicationLog.Logger.WriteLog(level, errorMessage, additionalInfo);
+            }
         }
     }
-}

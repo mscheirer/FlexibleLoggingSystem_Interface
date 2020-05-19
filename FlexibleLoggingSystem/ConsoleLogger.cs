@@ -2,12 +2,13 @@
 
 namespace FlexibleLoggingSystem
 {
-    public class ConsoleLogger : Logger
+    public class ConsoleLogger : ILogger
     {
-        public override void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
+
+        public void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
         {
             Console.WriteLine($"{level}: {errorMessage}");
-
+            
             if (!string.IsNullOrWhiteSpace(additionalInfo))
             {
                 Console.WriteLine(additionalInfo);

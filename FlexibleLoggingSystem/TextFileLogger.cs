@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FlexibleLoggingSystem
 {
-    public class TextFileLogger : Logger
+    public class TextFileLogger : ILogger
     {
         public TextFileLogger()
             : this(string.Empty)
@@ -24,7 +24,7 @@ namespace FlexibleLoggingSystem
 
         public string PathToDir { get; }
 
-        public override void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
+        public void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
         {
             DateTime nowDate = DateTime.Now;
             string fileName = $"err{nowDate.Year}{nowDate.Month.ToString().PadLeft(2, '0')}{nowDate.Day.ToString().PadLeft(2, '0')}.txt";
